@@ -54,15 +54,15 @@ em qualquer chat-textrecebe um "warn", que podem verificar usando o comando <.wa
 so pessoas com cargos têm acesso a estes comandos. E tambem podes remover warn se achares 
 que a pessoa merece ou foi um bug(Coisa que nao vai acontecer pois je programar muito bem).
 Se o mesmo voltar a por um invite é automaticamente kickado e é colocado numa lista 
-que tambem podem acessar com o comando <.kicker list>, e se voltar ao servidor e voltar a 
+que tambem podem acessar com o comando <.kicked list>, e se voltar ao servidor e voltar a 
 por um link vai ser automaticamente banido(é claro que todos os invites sao automaticamente 
 apagados no mesmo instante que é publicado). Em baixo tem os comandos e como os deves executar :)
 \n
 \n
 ------------------------------Comandos------------------------------
-.kicker list --> mostra todas as pessoas que estao na lista kicker (Depois de pustar 2 invites)
-.unkicker <NAME_LIST> --> retira alguem da lista Kicker
-.warn list --> mesma coisa que o kicker list (Depois de pustar 1 invite)
+.kicked list --> mostra todas as pessoas que estao na lista kicked (Depois de pustar 2 invites)
+.unkicked <NAME_LIST> --> retira alguem da lista Kicked
+.warn list --> mesma coisa que o kicked list (Depois de pustar 1 invite)
 .unwarn <USER_LIST> --> remove uma pessoa da warn list
 --------------------------------------------------------------------```''')
         else:
