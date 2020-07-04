@@ -47,7 +47,6 @@ async def on_message(message):
 				if message.author.name in kicked_read.read():
 					kicked_read.close()
 					print(f"{message.author} Levou ban pois ja levou kick uma vez e voltou a publicar um invite")
-					await 
 					await member_invite.ban(reason="Levou kick e voltou a publicar um invite")
 
 				else:
