@@ -3,13 +3,19 @@ import random
 import discord
 import string
 
+
 token_txt = open('token.txt', 'r')
 token = token_txt.read()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 client = discord.Client()
 
-
+super_admins = [
+    "Fury^^",
+    ".Fastio",
+    "Bifão",
+    ]
+    
 admins = [
     "BestHammer",
     "Fury^^",
@@ -33,7 +39,9 @@ async def on_ready():
 @client.event
 async def on_message(message):
 
-    def staff(mod):
+    sem_prems = f"{message.author.mention} Não tens premissões para esse comando."
+
+    def staff_remove(mod):
         mod_read = open(f"{mod}.txt", "r")
         text = mod_read.read()
         words = str(text.split())
@@ -44,6 +52,12 @@ async def on_message(message):
         mod_write = open(f"{mod}.txt", "w")
         mod_write.writelines(final)
         mod_write.close()
+
+    def staff_add(mod):
+    	mod_write = open(f"{mod}.txt", "a")
+    	mod_write.write(f"\n{target}")
+    	mod_write.close()
+
 
     if message.content.lower() == ".help":
         if message.author.name in admins:
@@ -89,6 +103,7 @@ Este bot é destinado aos moderadores do servidor, so tens que saber que nao pod
                     kicked_read.close()
                     print(
                         f"{message.author} Levou ban pois ja levou kick uma vez e voltou a publicar um invite")
+                    await message.channel.send(f"{message.author.mention} Levou ban pois nao cumpriu as regras do servidor.")
                     await member_invite.ban(reason="Levou kick e voltou a publicar um invite")
 
                 else:
@@ -97,6 +112,7 @@ Este bot é destinado aos moderadores do servidor, so tens que saber que nao pod
                     kicked_write = open("kicked.txt", "a")
                     kicked_write.write(f"\n{message.author.name}")
                     kicked_write.close()
+                    await message.channel.send(f"{message.author.mention} Foi Kickado pois nao cumpriu com as regras do servidor.")
                     await member_invite.kick(reason="Publicou um invite")
 
             else:
@@ -112,46 +128,94 @@ Este bot é destinado aos moderadores do servidor, so tens que saber que nao pod
         if message.author.name in admins:
             warn_read = open("warn.txt", "r")
             await message.channel.send(warn_read.read())
+            await message.channel.send("---------------------------------------")
             warn_read.close()
 
         else:
-            await message.channel.send(f"{message.author.mention} Não tens premissões para esse comando.")
+            await message.channel.send(sem_prems)
 
     if message.content == ".kicked list":
         if message.author.name in admins:
             kicked_read = open("kicked.txt", "r")
             await message.channel.send(kicked_read.read())
+            await message.channel.send("---------------------------------------")
             kicked_read.close()
 
         else:
-            await message.channel.send(f"{message.author.mention} Não tens premissões para esse comando.")
+            await message.channel.send(sem_prems)
+
+    if message.content == ".kicked clear":
+        if message.author.name in super_admins:
+            kicked_write = open("kicked.txt", "w")
+            kicked_write.write("empty")
+            kicked_write.close()
+            await message.channel.send("Done")
+        else: 
+            await message.channel.send(sem_prems)
+
+    if message.content == ".warn clear":
+        if message.author.name in super_admins:
+            warn_write = open("warn.txt", "w")
+            warn_write.write("empty")
+            warn_write.close()
+            await message.channel.send("Done")
+        else: 
+            await message.channel.send(sem_prems)
+
+
+
+
 
     for i in range(0, 300):
         user = random.choice(message.channel.guild.members)
         target = user.name
 
         try:
-            if message.content == ".unkicked {}".format(target):
-
+            if message.content == ".addkicked {}".format(target):
                 if message.author.name in admins:
-                    staff(mod="kicked")
+                    staff_add(mod="kicked")
+                    await message.channel.send("Done")
                     break
 
                 else:
-                    await message.channel.send(f"{message.author.mention} Não tens premissões para esse comando.")
+                    await message.channel.send(sem_prems)
+                    break
+
+            if message.content == ".addwarn {}".format(target):
+                if message.author.name in admins:
+                    staff_add(mod="warn")
+                    await message.channel.send("Done")
+                    break
+                else:
+                    await message.channel.send(sem_prems)
+                    break
+        except EnvironmentError:
+            print("algo correu mal na zona 'ADD'")
+
+        try:
+            if message.content == ".unkicked {}".format(target):
+
+                if message.author.name in admins:
+                    staff_remove(mod="kicked")
+                    await message.channel.send("Done")
+                    break
+
+                else:
+                    await message.channel.send(sem_prems)
                     break
 
             if message.content == ".unwarn {}".format(target):
 
                 if message.author.name in admins:        	
-                    staff(mod="warn")
+                    staff_remove(mod="warn")
+                    await message.channel.send("Done")
                     break
 
                 else:
-                    await message.channel.send(f"{message.author.mention} Não tens premissões para esse comando.")
+                    await message.channel.send(sem_prems)
                     break
 
         except EnvironmentError:
-            print("Algo correu mal")
+            print("Algo correu mal na zona 'UN'")
 
 client.run(token)
