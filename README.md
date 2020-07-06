@@ -4,7 +4,8 @@ Dont let people put discord invites in your chat without your premission, this b
 This bot was build for the use of admins, not for normal users.
 ------------------------------------------------------------------
 
------------------------Commands-----------------------
+-------------------------------Commands-------------------------------
+----------------------------
 
 .help
 
