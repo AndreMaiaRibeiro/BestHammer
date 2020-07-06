@@ -1,8 +1,10 @@
 # BestHammer
 Dont let people put discord invites in your chat without your premission, this bot will warn, kick them, and if necessary, give a ban.
 
-              COMMANDS
--------------------------------------------
+This bot was build for the use of admins, not for normal users.
+------------------------------------------------------------------
+
+-----------------------Commands-----------------------
 
 .help
 
