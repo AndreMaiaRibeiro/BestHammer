@@ -7,20 +7,20 @@ This bot was build for the use of admins, not for normal users.
 -------------------------------Commands-------------------------------
 ----------------------------
 
-.help
+.help --> show all the commands
 
-.warn list
+.warn list --> user list inside the warn.txt
 
-.kicked list
+.kicked list --> user list inside the kicked.txt
 
-.warn clear
+.warn clear --> clear warn.txt
 
-.kicked clear
+.kicked clear --> clear kicked.txt
 
-.addwarn <USER_NAME>
+.addwarn <USER_NAME> --> add a User to warn.txt
 
-.addkicked <USER_NAME>
+.addkicked <USER_NAME> --> add a User to kicked.txt
 
-.unwarn <USER_NAME>
+.unwarn <USER_NAME> --> remove a User in warn.txt
 
-.unkicked <USER_NAME>
+.unkicked <USER_NAME> --> remove a User in kicked.txt
