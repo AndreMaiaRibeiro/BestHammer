@@ -10,26 +10,9 @@ token = token_txt.read()
 TOKEN = os.getenv('DISCORD_TOKEN')
 client = discord.Client()
 
-super_admins = [
-    "Fury^^",
-    ".Fastio",
-    "Bifão",
-    ]
+super_admins = []
     
-admins = [
-    "BestHammer",
-    "Fury^^",
-    ".Fastio",
-    "Bifão",
-    "Ricardo21",
-    "nocasxd",
-    "Saldanha",
-    "martimm",
-    "Badum Badero",
-    "zara",
-    "ernestu",
-    "GATONÁCIO",
-]
+admins = []
 
 @client.event
 async def on_ready():
